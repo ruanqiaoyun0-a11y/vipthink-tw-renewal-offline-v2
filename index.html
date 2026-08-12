@@ -363,6 +363,17 @@ body{ background: var(--bg-grad); }
   .section-header h1{ font-size:22px; }
   .quiz-group{ padding:16px; }
 }
+.final-exam-actions{ margin-top:16px; display:flex; gap:10px; justify-content:flex-end; }
+.final-score-panel{ display:none; margin-top:18px; padding:18px 20px; border-radius:16px; border:1px solid #e6edf7; background:linear-gradient(180deg,#fff,#fbfcff); box-shadow:var(--card-shadow); }
+.final-score-panel.show{ display:block; animation: rise .5s ease both; }
+.final-score-panel .fs-top{ display:flex; align-items:center; justify-content:space-between; }
+.final-score-panel .fs-label{ font-size:14px; font-weight:700; color:#4338ca; }
+.final-score-panel .fs-score{ font-size:26px; font-weight:800; }
+.final-score-panel .fs-pct{ font-size:18px; font-weight:700; margin:6px 0 10px; }
+.final-score-panel .fs-msg{ font-size:14px; padding:10px 14px; border-radius:10px; line-height:1.6; }
+.final-score-panel.excellent{ border-color:#10b981; } .final-score-panel.excellent .fs-score{ color:#059669; } .final-score-panel.excellent .fs-pct{ color:#059669; } .final-score-panel.excellent .fs-msg.ok{ background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0; }
+.final-score-panel.good{ border-color:#3b82f6; } .final-score-panel.good .fs-score{ color:#1d4ed8; } .final-score-panel.good .fs-pct{ color:#1d4ed8; } .final-score-panel.good .fs-msg.ok{ background:#eff6ff; color:#1e40af; border:1px solid #bfdbfe; }
+.final-score-panel.fail{ border-color:#ef4444; } .final-score-panel.fail .fs-score{ color:#dc2626; } .final-score-panel.fail .fs-pct{ color:#dc2626; } .final-score-panel.fail .fs-msg.bad{ background:#fef2f2; color:#991b1b; border:1px solid #fecaca; }
 </style>
 </head>
 <body>
@@ -548,6 +559,14 @@ const courseData = {
     "icon": "💳",
     "type": "content",
     "content": "<div class=\"section-header\"><span class=\"section-badge\">12</span><h1>付费方式与续费确认</h1><span class=\"duration\">&#9201; 8-10 分钟</span><p style=\"margin-top:10px;color:var(--text-secondary);line-height:1.8;\">收尾动作做扎实，续费才算真正闭环。</p></div><div class=\"card\"><div class=\"card-title\">官方链接支付</div><p>在 <b>LP 工作台 - 学员详情页 - 续费</b> 中，按沟通选择相应续费课时包，复制链接发给家长。该链接 <b>24 小时内</b> 支付有效，支持卡支付（visa、Mastercard 等）——台湾地区说「卡支付」即可。</p></div><div class=\"card\"><div class=\"card-title\">其他付款方式与核对</div><ul style=\"padding-left:20px;line-height:1.9;margin:8px 0;\"><li>其他方式：AFTEE 等。</li><li>付款后 LP 需在后台核对 <b>新增课时及相应赠送内容</b> 是否到账，并告知家长确认结果。</li><li>电子合同在 <b>豌豆素质家长端 APP「我」</b> 里查看；电子发票若家长需要，在 LP 工作台【审批申请】处提交。</li></ul></div><div class=\"card\"><div class=\"card-title\">续费确认表</div><p>时效：<b>每周日截止</b>，质检勘误。家长付款后企微会自动触发；台湾主要使用 LINE，需 <b>手动发送、留痕报备</b>。若未发送，触发 <b>50 元质检扣罚</b>。</p></div><div class=\"quiz-group\"><div class=\"quiz-group-head\"><span style=\"font-size:20px;\">&#9977;&#65039;</span><h3 style=\"font-size:16px;font-weight:700;margin:0;\">📝 本章考核（5 题 · 全对解锁下一章）</h3><span class=\"quiz-group-status\" id=\"status-s11\">待考核</span></div><div class=\"quiz-card\" id=\"quiz-q12_1\"><div class=\"quiz-question\">官方续费支付链接从哪里获取？</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"q12_1\")'><span class=\"quiz-option-label\">A</span><span>LP 工作台 - 学员详情页 - 续费</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"q12_1\")'><span class=\"quiz-option-label\">B</span><span>公开网盘</span></div><div class=\"quiz-option\" data-option=\"2\" onclick='selectQuizOption(this, 2, \"q12_1\")'><span class=\"quiz-option-label\">C</span><span>个人社交账号</span></div><div class=\"quiz-option\" data-option=\"3\" onclick='selectQuizOption(this, 3, \"q12_1\")'><span class=\"quiz-option-label\">D</span><span>竞品官网</span></div></div><div class=\"quiz-feedback\" id=\"feedback-q12_1\"></div></div><div class=\"quiz-card\" id=\"quiz-q12_2\"><div class=\"quiz-question\">续费支付链接 24 小时内支付有效。</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"q12_2\")'><span class=\"quiz-option-label\">A</span><span>正确</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"q12_2\")'><span class=\"quiz-option-label\">B</span><span>错误</span></div></div><div class=\"quiz-feedback\" id=\"feedback-q12_2\"></div></div><div class=\"quiz-card\" id=\"quiz-q12_3\"><div class=\"quiz-question\">台湾地区向家长说明卡支付时，一般怎么说？</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"q12_3\")'><span class=\"quiz-option-label\">A</span><span>卡支付（如 visa / Mastercard）</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"q12_3\")'><span class=\"quiz-option-label\">B</span><span>微信支付</span></div><div class=\"quiz-option\" data-option=\"2\" onclick='selectQuizOption(this, 2, \"q12_3\")'><span class=\"quiz-option-label\">C</span><span>支付宝</span></div><div class=\"quiz-option\" data-option=\"3\" onclick='selectQuizOption(this, 3, \"q12_3\")'><span class=\"quiz-option-label\">D</span><span>现金到店</span></div></div><div class=\"quiz-feedback\" id=\"feedback-q12_3\"></div></div><div class=\"quiz-card fill\" id=\"quiz-q12_4\"><div class=\"quiz-question\">付款后 LP 需在后台核对新增____及相应赠送内容是否到账，并告知家长。</div><div class=\"fill-row\"><input type=\"text\" id=\"fill-input-q12_4\" class=\"fill-input\" placeholder=\"请输入答案...\" onkeydown=\"if(event.key==='Enter')checkFill('q12_4')\"><button class=\"btn btn-outline\" onclick=\"checkFill('q12_4')\">检查</button></div><div class=\"quiz-feedback\" id=\"feedback-q12_4\"></div></div><div class=\"quiz-card\" id=\"quiz-q12_5\"><div class=\"quiz-question\">电子合同在哪里查看？</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"q12_5\")'><span class=\"quiz-option-label\">A</span><span>豌豆素质家长端 APP「我」里面</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"q12_5\")'><span class=\"quiz-option-label\">B</span><span>纸质邮寄</span></div><div class=\"quiz-option\" data-option=\"2\" onclick='selectQuizOption(this, 2, \"q12_5\")'><span class=\"quiz-option-label\">C</span><span>竞品 APP</span></div><div class=\"quiz-option\" data-option=\"3\" onclick='selectQuizOption(this, 3, \"q12_5\")'><span class=\"quiz-option-label\">D</span><span>无法查看</span></div></div><div class=\"quiz-feedback\" id=\"feedback-q12_5\"></div></div><div class=\"quiz-group-actions\"><button class=\"btn btn-outline\" onclick=\"resetQuizGroup(11)\">&#8635; 重做练习</button></div></div>"
+  },
+  {
+    "id": "s13",
+    "title": "终极考核 · 综合测评",
+    "duration": "约 15 分钟",
+    "icon": "🏆",
+    "type": "content",
+    "content": "<div class=\"section-header\"><span class=\"section-badge\">🏆</span><h1>终极考核 · 综合测评</h1><span class=\"duration\">&#9201; 约 15 分钟</span><p style=\"margin-top:10px;color:var(--text-secondary);line-height:1.8;\">本考核覆盖全部 12 章核心要点，混合作答；提交后即时显示成绩，达到 80 分（15 题答对 12 题）及以上即达标，可领取结业证书。</p></div><div class=\"card\"><div class=\"card-title\">考核说明</div><p>共 <b>15 题</b>（选择题 / 判断题 / 填空题混合），覆盖续费政策、五步流程、学情反馈、课程规划、课包方案、推单逼单、异议处理、三性促单、风控与付费方式。</p><p>答对 <b>12 题及以上（≥80%）</b> 即达标，解锁结业证书；未达标可点击「重做考核」重新作答。</p></div><div class=\"quiz-group\" id=\"final-exam-group\"><div class=\"quiz-group-head\"><span style=\"font-size:20px;\">🏆</span><h3 style=\"font-size:16px;font-weight:700;margin:0;\">终极考核 · 综合测评</h3><span class=\"quiz-group-status\" id=\"status-s12\">待考核</span></div><div class=\"quiz-card\" id=\"quiz-qfe_1\"><div class=\"quiz-question\">续费五步流程的正确「第一步」与「收尾」分别是？</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"qfe_1\")'><span class=\"quiz-option-label\">A</span><span>学情反馈 → 收单</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"qfe_1\")'><span class=\"quiz-option-label\">B</span><span>课程规划 → 收单</span></div><div class=\"quiz-option\" data-option=\"2\" onclick='selectQuizOption(this, 2, \"qfe_1\")'><span class=\"quiz-option-label\">C</span><span>收单 → 学情反馈</span></div><div class=\"quiz-option\" data-option=\"3\" onclick='selectQuizOption(this, 3, \"qfe_1\")'><span class=\"quiz-option-label\">D</span><span>提出待提升点 → 课程规划</span></div></div><div class=\"quiz-feedback\" id=\"feedback-qfe_1\"></div></div><div class=\"quiz-card\" id=\"quiz-qfe_2\"><div class=\"quiz-question\">续费课包以新签课包整体生命周期的 1/3 划分为升舱期、早鸟期、结课期三个时期。</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"qfe_2\")'><span class=\"quiz-option-label\">A</span><span>正确</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"qfe_2\")'><span class=\"quiz-option-label\">B</span><span>错误</span></div></div><div class=\"quiz-feedback\" id=\"feedback-qfe_2\"></div></div><div class=\"quiz-card\" id=\"quiz-qfe_3\"><div class=\"quiz-question\">豌豆思维培养课程体系共有几阶？</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"qfe_3\")'><span class=\"quiz-option-label\">A</span><span>六阶</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"qfe_3\")'><span class=\"quiz-option-label\">B</span><span>九阶</span></div><div class=\"quiz-option\" data-option=\"2\" onclick='selectQuizOption(this, 2, \"qfe_3\")'><span class=\"quiz-option-label\">C</span><span>十二阶</span></div><div class=\"quiz-option\" data-option=\"3\" onclick='selectQuizOption(this, 3, \"qfe_3\")'><span class=\"quiz-option-label\">D</span><span>三阶</span></div></div><div class=\"quiz-feedback\" id=\"feedback-qfe_3\"></div></div><div class=\"quiz-card fill\" id=\"quiz-qfe_4\"><div class=\"quiz-question\">续费确认表时效为每周____截止，需质检勘误；漏发会触发 50 元质检扣罚。</div><div class=\"fill-row\"><input type=\"text\" id=\"fill-input-qfe_4\" class=\"fill-input\" placeholder=\"请输入答案...\" onkeydown=\"if(event.key==='Enter')checkFill('qfe_4')\"><button class=\"btn btn-outline\" onclick=\"checkFill('qfe_4')\">检查</button></div><div class=\"quiz-feedback\" id=\"feedback-qfe_4\"></div></div><div class=\"quiz-card\" id=\"quiz-qfe_5\"><div class=\"quiz-question\">「三性促单」指的是哪三性？</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"qfe_5\")'><span class=\"quiz-option-label\">A</span><span>重要性、紧迫性、唯一性</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"qfe_5\")'><span class=\"quiz-option-label\">B</span><span>便宜、快速、简单</span></div><div class=\"quiz-option\" data-option=\"2\" onclick='selectQuizOption(this, 2, \"qfe_5\")'><span class=\"quiz-option-label\">C</span><span>品牌、价格、服务</span></div><div class=\"quiz-option\" data-option=\"3\" onclick='selectQuizOption(this, 3, \"qfe_5\")'><span class=\"quiz-option-label\">D</span><span>理性、感性、冲动</span></div></div><div class=\"quiz-feedback\" id=\"feedback-qfe_5\"></div></div><div class=\"quiz-card\" id=\"quiz-qfe_6\"><div class=\"quiz-question\">优惠应一开始就全部放出，避免家长犹豫。</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"qfe_6\")'><span class=\"quiz-option-label\">A</span><span>正确</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"qfe_6\")'><span class=\"quiz-option-label\">B</span><span>错误</span></div></div><div class=\"quiz-feedback\" id=\"feedback-qfe_6\"></div></div><div class=\"quiz-card\" id=\"quiz-qfe_7\"><div class=\"quiz-question\">以下哪项不属于学情反馈「效果外化」的三块内容？</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"qfe_7\")'><span class=\"quiz-option-label\">A</span><span>知识内容 + 方法能力</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"qfe_7\")'><span class=\"quiz-option-label\">B</span><span>学习习惯</span></div><div class=\"quiz-option\" data-option=\"2\" onclick='selectQuizOption(this, 2, \"qfe_7\")'><span class=\"quiz-option-label\">C</span><span>课堂表现</span></div><div class=\"quiz-option\" data-option=\"3\" onclick='selectQuizOption(this, 3, \"qfe_7\")'><span class=\"quiz-option-label\">D</span><span>家长家庭收入</span></div></div><div class=\"quiz-feedback\" id=\"feedback-qfe_7\"></div></div><div class=\"quiz-card fill\" id=\"quiz-qfe_8\"><div class=\"quiz-question\">异议处理四核心方向：理解共情 → 挖掘根源 → ____ → 理念强化。</div><div class=\"fill-row\"><input type=\"text\" id=\"fill-input-qfe_8\" class=\"fill-input\" placeholder=\"请输入答案...\" onkeydown=\"if(event.key==='Enter')checkFill('qfe_8')\"><button class=\"btn btn-outline\" onclick=\"checkFill('qfe_8')\">检查</button></div><div class=\"quiz-feedback\" id=\"feedback-qfe_8\"></div></div><div class=\"quiz-card\" id=\"quiz-qfe_9\"><div class=\"quiz-question\">台湾地区向家长说明支付方式时，一般如何表达？</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"qfe_9\")'><span class=\"quiz-option-label\">A</span><span>卡支付（如 visa / Mastercard）</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"qfe_9\")'><span class=\"quiz-option-label\">B</span><span>微信支付</span></div><div class=\"quiz-option\" data-option=\"2\" onclick='selectQuizOption(this, 2, \"qfe_9\")'><span class=\"quiz-option-label\">C</span><span>支付宝</span></div><div class=\"quiz-option\" data-option=\"3\" onclick='selectQuizOption(this, 3, \"qfe_9\")'><span class=\"quiz-option-label\">D</span><span>现金到店</span></div></div><div class=\"quiz-feedback\" id=\"feedback-qfe_9\"></div></div><div class=\"quiz-card\" id=\"quiz-qfe_10\"><div class=\"quiz-question\">官方续费支付链接在 24 小时内支付有效。</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"qfe_10\")'><span class=\"quiz-option-label\">A</span><span>正确</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"qfe_10\")'><span class=\"quiz-option-label\">B</span><span>错误</span></div></div><div class=\"quiz-feedback\" id=\"feedback-qfe_10\"></div></div><div class=\"quiz-card\" id=\"quiz-qfe_11\"><div class=\"quiz-question\">豌豆课程体系贴合哪一课纲的核心要求？</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"qfe_11\")'><span class=\"quiz-option-label\">A</span><span>台湾 108 课纲</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"qfe_11\")'><span class=\"quiz-option-label\">B</span><span>大陆人教版</span></div><div class=\"quiz-option\" data-option=\"2\" onclick='selectQuizOption(this, 2, \"qfe_11\")'><span class=\"quiz-option-label\">C</span><span>美国 Common Core</span></div><div class=\"quiz-option\" data-option=\"3\" onclick='selectQuizOption(this, 3, \"qfe_11\")'><span class=\"quiz-option-label\">D</span><span>新加坡 CPA</span></div></div><div class=\"quiz-feedback\" id=\"feedback-qfe_11\"></div></div><div class=\"quiz-card fill\" id=\"quiz-qfe_12\"><div class=\"quiz-question\">推单时强调「再便宜的东西如果没有____，肯定是不会买的」，自然引出思维学习要持续。</div><div class=\"fill-row\"><input type=\"text\" id=\"fill-input-qfe_12\" class=\"fill-input\" placeholder=\"请输入答案...\" onkeydown=\"if(event.key==='Enter')checkFill('qfe_12')\"><button class=\"btn btn-outline\" onclick=\"checkFill('qfe_12')\">检查</button></div><div class=\"quiz-feedback\" id=\"feedback-qfe_12\"></div></div><div class=\"quiz-card\" id=\"quiz-qfe_13\"><div class=\"quiz-question\">长期方案的特点是？</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"qfe_13\")'><span class=\"quiz-option-label\">A</span><span>课时多、总价高、单价低</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"qfe_13\")'><span class=\"quiz-option-label\">B</span><span>课时少、总价低、单价高</span></div><div class=\"quiz-option\" data-option=\"2\" onclick='selectQuizOption(this, 2, \"qfe_13\")'><span class=\"quiz-option-label\">C</span><span>课时多、单价高</span></div><div class=\"quiz-option\" data-option=\"3\" onclick='selectQuizOption(this, 3, \"qfe_13\")'><span class=\"quiz-option-label\">D</span><span>课时少、总价高</span></div></div><div class=\"quiz-feedback\" id=\"feedback-qfe_13\"></div></div><div class=\"quiz-card\" id=\"quiz-qfe_14\"><div class=\"quiz-question\">处理家长异议时应直接反驳，快速把异议压下去。</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"qfe_14\")'><span class=\"quiz-option-label\">A</span><span>正确</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"qfe_14\")'><span class=\"quiz-option-label\">B</span><span>错误</span></div></div><div class=\"quiz-feedback\" id=\"feedback-qfe_14\"></div></div><div class=\"quiz-card\" id=\"quiz-qfe_15\"><div class=\"quiz-question\">升舱期内家长可购买哪种课包？</div><div class=\"quiz-options\"><div class=\"quiz-option\" data-option=\"0\" onclick='selectQuizOption(this, 0, \"qfe_15\")'><span class=\"quiz-option-label\">A</span><span>升舱课包（优惠力度较大）</span></div><div class=\"quiz-option\" data-option=\"1\" onclick='selectQuizOption(this, 1, \"qfe_15\")'><span class=\"quiz-option-label\">B</span><span>普通课包</span></div><div class=\"quiz-option\" data-option=\"2\" onclick='selectQuizOption(this, 2, \"qfe_15\")'><span class=\"quiz-option-label\">C</span><span>免费课包</span></div><div class=\"quiz-option\" data-option=\"3\" onclick='selectQuizOption(this, 3, \"qfe_15\")'><span class=\"quiz-option-label\">D</span><span>不可购买任何课包</span></div></div><div class=\"quiz-feedback\" id=\"feedback-qfe_15\"></div></div><div class=\"final-exam-actions\"><button class=\"btn btn-primary\" onclick=\"submitFinalExam()\">📊 提交考核（查看成绩）</button><button class=\"btn btn-outline\" onclick=\"resetFinalExam()\">↺ 重做考核</button></div><div id=\"final-score\" class=\"final-score-panel\"></div></div>"
   }
   ]
 };
@@ -1739,6 +1758,308 @@ const quizzes = {
     "correct": 0,
     "feedback_correct": "✅ 正确！在 <b>豌豆素质家长端 APP「我」</b> 里查看。",
     "feedback_wrong": "❌ 不对，是家长端 APP。"
+  },
+  "qfe_1": {
+    "type": "mcq",
+    "question": "续费五步流程的正确「第一步」与「收尾」分别是？",
+    "options": [
+      {
+        "label": "A",
+        "text": "学情反馈 → 收单"
+      },
+      {
+        "label": "B",
+        "text": "课程规划 → 收单"
+      },
+      {
+        "label": "C",
+        "text": "收单 → 学情反馈"
+      },
+      {
+        "label": "D",
+        "text": "提出待提升点 → 课程规划"
+      }
+    ],
+    "correct": 0,
+    "feedback_correct": "✅ 正确！五步顺序为 学情反馈 → 提出待提升点 → 课程规划 → 课包方案 → 收单。",
+    "feedback_wrong": "❌ 不对，第一步是学情反馈、收尾是收单。"
+  },
+  "qfe_2": {
+    "type": "tf",
+    "question": "续费课包以新签课包整体生命周期的 1/3 划分为升舱期、早鸟期、结课期三个时期。",
+    "options": [
+      {
+        "label": "A",
+        "text": "正确"
+      },
+      {
+        "label": "B",
+        "text": "错误"
+      }
+    ],
+    "correct": 0,
+    "feedback_correct": "✅ 正确！以整体生命周期的 1/3 划分三个时期。",
+    "feedback_wrong": "❌ 不对，是 1/3 划分。"
+  },
+  "qfe_3": {
+    "type": "mcq",
+    "question": "豌豆思维培养课程体系共有几阶？",
+    "options": [
+      {
+        "label": "A",
+        "text": "六阶"
+      },
+      {
+        "label": "B",
+        "text": "九阶"
+      },
+      {
+        "label": "C",
+        "text": "十二阶"
+      },
+      {
+        "label": "D",
+        "text": "三阶"
+      }
+    ],
+    "correct": 1,
+    "feedback_correct": "✅ 正确！完善的九阶体系。",
+    "feedback_wrong": "❌ 不对，是九阶。"
+  },
+  "qfe_4": {
+    "type": "fill",
+    "question": "续费确认表时效为每周____截止，需质检勘误；漏发会触发 50 元质检扣罚。",
+    "fill_answer": "周日",
+    "fill_aliases": [
+      "日",
+      "星期天",
+      "每周日"
+    ],
+    "feedback_correct": "✅ 正确！续费确认表每周日截止。",
+    "feedback_wrong": "❌ 不对，是周日截止。"
+  },
+  "qfe_5": {
+    "type": "mcq",
+    "question": "「三性促单」指的是哪三性？",
+    "options": [
+      {
+        "label": "A",
+        "text": "重要性、紧迫性、唯一性"
+      },
+      {
+        "label": "B",
+        "text": "便宜、快速、简单"
+      },
+      {
+        "label": "C",
+        "text": "品牌、价格、服务"
+      },
+      {
+        "label": "D",
+        "text": "理性、感性、冲动"
+      }
+    ],
+    "correct": 0,
+    "feedback_correct": "✅ 正确！三性 = 重要性、紧迫性、唯一性。",
+    "feedback_wrong": "❌ 不对，是重要性/紧迫性/唯一性。"
+  },
+  "qfe_6": {
+    "type": "tf",
+    "question": "优惠应一开始就全部放出，避免家长犹豫。",
+    "options": [
+      {
+        "label": "A",
+        "text": "正确"
+      },
+      {
+        "label": "B",
+        "text": "错误"
+      }
+    ],
+    "correct": 1,
+    "feedback_correct": "✅ 正确！优惠要保留底牌，不要一次性放完。",
+    "feedback_wrong": "❌ 不对，需保留底牌。"
+  },
+  "qfe_7": {
+    "type": "mcq",
+    "question": "以下哪项不属于学情反馈「效果外化」的三块内容？",
+    "options": [
+      {
+        "label": "A",
+        "text": "知识内容 + 方法能力"
+      },
+      {
+        "label": "B",
+        "text": "学习习惯"
+      },
+      {
+        "label": "C",
+        "text": "课堂表现"
+      },
+      {
+        "label": "D",
+        "text": "家长家庭收入"
+      }
+    ],
+    "correct": 3,
+    "feedback_correct": "✅ 正确！效果外化三块为知识方法能力、学习习惯、课堂表现，不含家长收入。",
+    "feedback_wrong": "❌ 不对，家长收入不属于效果外化。"
+  },
+  "qfe_8": {
+    "type": "fill",
+    "question": "异议处理四核心方向：理解共情 → 挖掘根源 → ____ → 理念强化。",
+    "fill_answer": "精准破局",
+    "fill_aliases": [
+      "精准破解",
+      "针对性给方案"
+    ],
+    "feedback_correct": "✅ 正确！第三步是精准破局（针对性给方案）。",
+    "feedback_wrong": "❌ 不对，是精准破局。"
+  },
+  "qfe_9": {
+    "type": "mcq",
+    "question": "台湾地区向家长说明支付方式时，一般如何表达？",
+    "options": [
+      {
+        "label": "A",
+        "text": "卡支付（如 visa / Mastercard）"
+      },
+      {
+        "label": "B",
+        "text": "微信支付"
+      },
+      {
+        "label": "C",
+        "text": "支付宝"
+      },
+      {
+        "label": "D",
+        "text": "现金到店"
+      }
+    ],
+    "correct": 0,
+    "feedback_correct": "✅ 正确！台湾说「卡支付（visa / Mastercard 等）」。",
+    "feedback_wrong": "❌ 不对，是卡支付。"
+  },
+  "qfe_10": {
+    "type": "tf",
+    "question": "官方续费支付链接在 24 小时内支付有效。",
+    "options": [
+      {
+        "label": "A",
+        "text": "正确"
+      },
+      {
+        "label": "B",
+        "text": "错误"
+      }
+    ],
+    "correct": 0,
+    "feedback_correct": "✅ 正确！链接 24 小时内有效。",
+    "feedback_wrong": "❌ 不对，确实 24 小时有效。"
+  },
+  "qfe_11": {
+    "type": "mcq",
+    "question": "豌豆课程体系贴合哪一课纲的核心要求？",
+    "options": [
+      {
+        "label": "A",
+        "text": "台湾 108 课纲"
+      },
+      {
+        "label": "B",
+        "text": "大陆人教版"
+      },
+      {
+        "label": "C",
+        "text": "美国 Common Core"
+      },
+      {
+        "label": "D",
+        "text": "新加坡 CPA"
+      }
+    ],
+    "correct": 0,
+    "feedback_correct": "✅ 正确！贴合台湾 108 课纲。",
+    "feedback_wrong": "❌ 不对，是台湾 108 课纲。"
+  },
+  "qfe_12": {
+    "type": "fill",
+    "question": "推单时强调「再便宜的东西如果没有____，肯定是不会买的」，自然引出思维学习要持续。",
+    "fill_answer": "效果",
+    "fill_aliases": [
+      "效果的话",
+      "成效"
+    ],
+    "feedback_correct": "✅ 正确！没有效果再便宜也不买。",
+    "feedback_wrong": "❌ 不对，是效果。"
+  },
+  "qfe_13": {
+    "type": "mcq",
+    "question": "长期方案的特点是？",
+    "options": [
+      {
+        "label": "A",
+        "text": "课时多、总价高、单价低"
+      },
+      {
+        "label": "B",
+        "text": "课时少、总价低、单价高"
+      },
+      {
+        "label": "C",
+        "text": "课时多、单价高"
+      },
+      {
+        "label": "D",
+        "text": "课时少、总价高"
+      }
+    ],
+    "correct": 0,
+    "feedback_correct": "✅ 正确！长期方案课时多、总价高、单价低。",
+    "feedback_wrong": "❌ 不对，长期是课时多单价低。"
+  },
+  "qfe_14": {
+    "type": "tf",
+    "question": "处理家长异议时应直接反驳，快速把异议压下去。",
+    "options": [
+      {
+        "label": "A",
+        "text": "正确"
+      },
+      {
+        "label": "B",
+        "text": "错误"
+      }
+    ],
+    "correct": 1,
+    "feedback_correct": "✅ 正确！应先共情、避免直接反驳，否则沟通易中断。",
+    "feedback_wrong": "❌ 不对，不能直接反驳。"
+  },
+  "qfe_15": {
+    "type": "mcq",
+    "question": "升舱期内家长可购买哪种课包？",
+    "options": [
+      {
+        "label": "A",
+        "text": "升舱课包（优惠力度较大）"
+      },
+      {
+        "label": "B",
+        "text": "普通课包"
+      },
+      {
+        "label": "C",
+        "text": "免费课包"
+      },
+      {
+        "label": "D",
+        "text": "不可购买任何课包"
+      }
+    ],
+    "correct": 0,
+    "feedback_correct": "✅ 正确！升舱期可购买优惠力度较大的升舱课包。",
+    "feedback_wrong": "❌ 不对，升舱期买升舱课包。"
   }
 };
 
@@ -1749,7 +2070,7 @@ const LS_PREFIX = 'vipthink_tw_renewal_offline_v2';
 let currentSection = 0;
 let completedSections = new Set();
 let quizState = {};
-const quizGroups = {"0": ["q1_1", "q1_2", "q1_3", "q1_4", "q1_5"], "1": ["q2_1", "q2_2", "q2_3", "q2_4"], "2": ["q3_1", "q3_2", "q3_3", "q3_4", "q3_5"], "3": ["q4_1", "q4_2", "q4_3", "q4_4", "q4_5"], "4": ["q5_1", "q5_2", "q5_3", "q5_4", "q5_5"], "5": ["q6_1", "q6_2", "q6_3", "q6_4", "q6_5"], "6": ["q7_1", "q7_2", "q7_3", "q7_4", "q7_5"], "7": ["q8_1", "q8_2", "q8_3", "q8_4", "q8_5"], "8": ["q9_1", "q9_2", "q9_3", "q9_4", "q9_5"], "9": ["q10_1", "q10_2", "q10_3", "q10_4", "q10_5", "q10_6"], "10": ["q11_1", "q11_2", "q11_3", "q11_4"], "11": ["q12_1", "q12_2", "q12_3", "q12_4", "q12_5"]};
+const quizGroups = {"0": ["q1_1", "q1_2", "q1_3", "q1_4", "q1_5"], "1": ["q2_1", "q2_2", "q2_3", "q2_4"], "2": ["q3_1", "q3_2", "q3_3", "q3_4", "q3_5"], "3": ["q4_1", "q4_2", "q4_3", "q4_4", "q4_5"], "4": ["q5_1", "q5_2", "q5_3", "q5_4", "q5_5"], "5": ["q6_1", "q6_2", "q6_3", "q6_4", "q6_5"], "6": ["q7_1", "q7_2", "q7_3", "q7_4", "q7_5"], "7": ["q8_1", "q8_2", "q8_3", "q8_4", "q8_5"], "8": ["q9_1", "q9_2", "q9_3", "q9_4", "q9_5"], "9": ["q10_1", "q10_2", "q10_3", "q10_4", "q10_5", "q10_6"], "10": ["q11_1", "q11_2", "q11_3", "q11_4"], "11": ["q12_1", "q12_2", "q12_3", "q12_4", "q12_5"], "12": ["qfe_1", "qfe_2", "qfe_3", "qfe_4", "qfe_5", "qfe_6", "qfe_7", "qfe_8", "qfe_9", "qfe_10", "qfe_11", "qfe_12", "qfe_13", "qfe_14", "qfe_15"]};
 function getGroup(i){ return quizGroups[i] || []; }
 function sectionPassed(i){ const g=getGroup(i); if(!g.length) return false; return g.every(function(qid){ const s=quizState[qid]; return !!(s&&s.answered&&s.correct); }); }
 function updateGroupStatus(i){
@@ -1765,6 +2086,52 @@ function chapterPassed(sec){ return sectionPassed(sec); }
 function resetQuizGroup(i){ getGroup(i).forEach(function(qid){ const st=quizState[qid]; if(st){st.answered=false;st.correct=false;} const card=document.getElementById('quiz-'+qid); if(card){ card.classList.remove('answered-correct','answered-wrong'); card.querySelectorAll('.quiz-option').forEach(function(o){o.classList.remove('selected','correct','wrong','done');}); } const inp=document.getElementById('fill-input-'+qid); if(inp)inp.value=''; const fb=document.getElementById('feedback-'+qid); if(fb){fb.className='quiz-feedback';fb.innerHTML='';} }); updateGroupStatus(i); saveProgress(); }
 function checkFill(qid){ const input=document.getElementById('fill-input-'+qid); const st=quizState[qid]||(quizState[qid]={}); if(st.answered&&st.correct) return; const ans=(input.value||'').trim(); const quiz=quizzes[qid]; if(!quiz||quiz.type!=='fill') return; const fb=document.getElementById('feedback-'+qid); var correct=false; if(ans.toLowerCase()===quiz.fill_answer.toLowerCase()){ correct=true; } else { correct=(quiz.fill_aliases||[]).some(function(a){ return ans.toLowerCase()===a.toLowerCase(); }); } st.answered=true; st.correct=correct; if(correct){ document.getElementById('quiz-'+qid).classList.add('answered-correct'); fb.className='quiz-feedback show correct'; fb.innerHTML=quiz.feedback_correct; } else { fb.className='quiz-feedback show wrong'; fb.innerHTML=quiz.feedback_wrong; } updateGroupStatus(currentSection); saveProgress(); }
 function tryNextSection(i){ if(!chapterPassed(i)){ showToast('请先完成本章练习（全部答对）','warning'); return; } markComplete(i); navigateTo(i+1); }
+let finalExamPassed = false;
+let finalCorrect = 0;
+let finalTotal = 0;
+let finalScore = '—';
+const FINAL_THRESHOLD = 0.8;
+function renderFinalScorePanel(correct, total){
+  const pct = total ? Math.round(correct/total*100) : 0;
+  let grade, cls, icon;
+  if(pct>=90){ grade='优秀'; cls='excellent'; icon='🏆'; }
+  else if(pct>=80){ grade='良好'; cls='good'; icon='🎉'; }
+  else { grade='未达标'; cls='fail'; icon='⚠️'; }
+  const passed = pct >= FINAL_THRESHOLD*100;
+  finalExamPassed = passed; finalCorrect = correct; finalTotal = total;
+  finalScore = correct + '/' + total + '（' + pct + '%）';
+  const panel = document.getElementById('final-score');
+  if(panel){
+    panel.className = 'final-score-panel show ' + cls;
+    panel.innerHTML = '<div class="fs-top"><span class="fs-label">🏆 终极考核成绩</span><span class="fs-score">'+correct+' / '+total+'</span></div>'
+      + '<div class="fs-pct">'+pct+'% · '+grade+' '+icon+'</div>'
+      + (passed ? '<div class="fs-msg ok">🎓 考核达标（≥80%），已解锁结业证书！</div>' : '<div class="fs-msg bad">未达标（需 ≥80%），请点击「重做考核」再挑战。</div>');
+  }
+  const st = document.getElementById('status-s12');
+  if(st){ st.textContent = passed ? ('✅ 通过 ('+correct+'/'+total+')') : ('未通过 ('+correct+'/'+total+')'); st.className = 'quiz-group-status ' + (passed?'ok':'warn'); }
+  saveProgress();
+}
+function submitFinalExam(){
+  const g = getGroup(12);
+  let answered=0, correct=0;
+  g.forEach(function(qid){ const s=quizState[qid]; if(s&&s.answered){ answered++; if(s.correct) correct++; } });
+  if(answered < g.length){ showToast('请先答完所有 '+g.length+' 道终极考核题再提交','warning'); return; }
+  renderFinalScorePanel(correct, g.length);
+  if(finalExamPassed){ showToast('🎉 终极考核通过！可领取结业证书','success'); checkCertificate(); }
+}
+function resetFinalExam(){
+  getGroup(12).forEach(function(qid){
+    const st=quizState[qid]; if(st){ st.answered=false; st.correct=false; }
+    const card=document.getElementById('quiz-'+qid);
+    if(card){ card.classList.remove('answered-correct','answered-wrong'); card.querySelectorAll('.quiz-option').forEach(function(o){ o.classList.remove('selected','correct','wrong','done'); }); }
+    const inp=document.getElementById('fill-input-'+qid); if(inp) inp.value='';
+    const fb=document.getElementById('feedback-'+qid); if(fb){ fb.className='quiz-feedback'; fb.innerHTML=''; }
+  });
+  finalExamPassed=false; finalCorrect=0; finalTotal=0; finalScore='—';
+  const panel=document.getElementById('final-score'); if(panel){ panel.className='final-score-panel'; panel.innerHTML=''; }
+  const st=document.getElementById('status-s12'); if(st){ st.textContent='待考核'; st.className='quiz-group-status'; }
+  saveProgress();
+}
 
 
 let studySeconds = 0;
@@ -1869,8 +2236,8 @@ function markComplete(index) {
 }
 
 function tryCompleteCourse(index) {
-  if (!chapterPassed(courseData.sections.length - 1)) {
-  showToast('请先完成本章练习（全部答对）', 'warning');
+  if (!finalExamPassed) {
+  showToast('请先完成终极考核并达到 80 分及以上', 'warning');
   return;
 }
 markComplete(index);
@@ -2054,7 +2421,7 @@ function loadNotes() {
 function saveProgress() {
   const state = {
     completedSections: [...completedSections],
-    quizState: quizState
+    quizState: quizState, finalExamPassed: finalExamPassed, finalCorrect: finalCorrect, finalTotal: finalTotal
   };
   localStorage.setItem(LS_PREFIX + '_progress', JSON.stringify(state));
 }
@@ -2065,7 +2432,11 @@ function loadProgress() {
     if (saved) {
       completedSections = new Set(saved.completedSections || []);
       if (saved.quizState) quizState = saved.quizState;
+finalExamPassed = saved.finalExamPassed || false;
+finalCorrect = saved.finalCorrect || 0;
+finalTotal = saved.finalTotal || 0;
 if (courseData && courseData.sections) courseData.sections.forEach(function(s, i){ updateGroupStatus(i); });
+if (finalExamPassed && finalTotal) renderFinalScorePanel(finalCorrect, finalTotal);
       updateProgress();
       updateSidebarLocks();
     }
@@ -2078,7 +2449,10 @@ if (courseData && courseData.sections) courseData.sections.forEach(function(s, i
 function checkCertificate() {
   let allDone = completedSections.size >= courseData.sections.length;
   allDone = true;
-for (var z = 0; z < courseData.sections.length; z++) { if (!chapterPassed(z)) { allDone = false; break; } }
+for (var z = 0; z < courseData.sections.length; z++) {
+  if (z === courseData.sections.length - 1) { if (!finalExamPassed) { allDone = false; break; } }
+  else if (!chapterPassed(z)) { allDone = false; break; }
+}
 
   if (allDone) {
     setTimeout(() => {
